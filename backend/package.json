@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --coveragePathIgnorePatterns='routes/order.js|server.js'"
+    "test": "jest --coverage --coveragePathIgnorePatterns='routes/order.js|server.js'",
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "",
