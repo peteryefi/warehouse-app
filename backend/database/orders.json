@@ -1,0 +1,100 @@
+{
+  "orders": [
+    {
+      "id": "order_1743874307448_854",
+      "products": [
+        {
+          "name": "Valentine Box",
+          "quantity": 2,
+          "items": [
+            "Red Roses Bouquet",
+            "Box of chocolates",
+            "Love card",
+            "Women’s perfume"
+          ]
+        }
+      ],
+      "date": "2025-04-05",
+      "address": {
+        "name": "Peter Yefi",
+        "email": "peteryefi@gmail.com",
+        "street": "3000 Avenue De La Pepiniere",
+        "country": "Canada",
+        "city": "Montreal",
+        "zipCode": "H1N 1E3"
+      },
+      "status": "pending"
+    },
+    {
+      "products": [
+        {
+          "name": "Birthday Box",
+          "quantity": 3,
+          "items": [
+            "Birthday cupcake",
+            "$100 Visa Gift Card",
+            "Birthday card"
+          ]
+        }
+      ],
+      "date": "2025-04-04",
+      "address": {
+        "name": "Peter Yefi",
+        "email": "peteryefi@gmail.com",
+        "street": "1839 Rue Sherbrooke",
+        "city": "Montreal",
+        "country": "Canada",
+        "zipCode": "H1N 2X7"
+      },
+      "status": "pending",
+      "id": "order_1743874307448_856"
+    },
+    {
+      "products": [
+        {
+          "name": "Client Gift Box",
+          "quantity": 2,
+          "items": [
+            "Bottle of wine",
+            "Fruit basket",
+            "Pen"
+          ]
+        }
+      ],
+      "date": "2025-04-03",
+      "address": {
+        "name": "Sixtus Yefi",
+        "email": "peter.yefi@concordia.ca",
+        "street": "1893 Rue Guy Concordia",
+        "city": "Montreal",
+        "country": "Canada",
+        "zipCode": "H1N 1U5"
+      },
+      "status": "pending",
+      "id": "order_1743875727915_147"
+    },
+    {
+      "products": [
+        {
+          "name": "Client Gift Box",
+          "quantity": 1
+        },
+        {
+          "name": "Birthday Box",
+          "quantity": 3
+        }
+      ],
+      "date": "2025-04-06",
+      "address": {
+        "name": "Kwame Offer",
+        "email": "kwame@gmail.com",
+        "street": "Number 3 Prempeh Street",
+        "city": "Kumasi",
+        "country": "Ghana",
+        "zipCode": "1898"
+      },
+      "status": "pending",
+      "id": "order_1743966076601_726"
+    }
+  ]
+}

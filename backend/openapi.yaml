@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: Order Management API
+  description: API for managing orders
+  version: 1.0.0
+paths:
+  /api/orders:
+    get:
+      tags:
+        - orders
+      summary: Get all orders
+      operationId: getAllOrders
+      responses:
+        '200':
+          description: List of all orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        products:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              quantity:
+                                type: integer
+                        date:
+                          type: string
+                          format: date
+                        address:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            email:
+                              type: string
+                            street:
+                              type: string
+                            city:
+                              type: string
+                            country:
+                              type: string
+                            zipCode:
+                              type: string
+                        status:
+                          type: string
+                          default: "pending"
+    post:
+      tags:
+        - orders
+      summary: Create a new order
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      quantity:
+                        type: integer
+                date:
+                  type: string
+                  format: date
+                address:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    street:
+                      type: string
+                    city:
+                      type: string
+                    country:
+                      type: string
+                    zipCode:
+                      type: string
+                status:
+                  type: string
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        quantity:
+                          type: integer
+                  date:
+                    type: string
+                    format: date
+                  address:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      street:
+                        type: string
+                      city:
+                        type: string
+                      country:
+                        type: string
+                      zipCode:
+                        type: string
+                  status:
+                    type: string
+  /api/orders/{id}:
+    get:
+      tags:
+        - orders
+      summary: Get an order by ID
+      operationId: getOrderById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the order to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An order by ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        quantity:
+                          type: integer
+                  date:
+                    type: string
+                    format: date
+                  address:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      street:
+                        type: string
+                      city:
+                        type: string
+                      country:
+                        type: string
+                      zipCode:
+                        type: string
+                  status:
+                    type: string
+    put:
+      tags:
+        - orders
+      summary: Update an existing order
+      operationId: updateOrder
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the order to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      quantity:
+                        type: integer
+                date:
+                  type: string
+                  format: date
+                address:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    street:
+                      type: string
+                    city:
+                      type: string
+                    country:
+                      type: string
+                    zipCode:
+                      type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Order updated successfully
+    delete:
+      tags:
+        - orders
+      summary: Delete an order
+      operationId: deleteOrder
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the order to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Order deleted successfully
+
+  /api/orders/summary:
+    get:
+      tags:
+        - orders
+      summary: Get products and their count within a date range
+      operationId: getProductsSummary
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          description: Start date for the range (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          description: End date for the range (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Summary of products with their total counts within the specified date range
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  productsCount:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                example:
+                  productsCount:
+                    Red Roses Bouquet: 2
+                    Box of chocolates: 2
+                    Love card: 2
+                    Women’s perfume: 2
+                    Birthday cupcake: 3
+                    $100 Visa Gift Card: 3
+                    Birthday card: 3
+        '400':
+          description: Invalid date range provided
+        '500':
+          description: Failed to fetch products and their counts
